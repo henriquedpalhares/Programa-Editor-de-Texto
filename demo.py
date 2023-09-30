@@ -9,7 +9,7 @@ def change_color():
     text_area.config(fg=color[1])
 
 def change_font(*args):
-    pass
+    text_area.config(font=(font_name.get(), size_box.get()))
 
 def new_file():
     pass
@@ -60,6 +60,8 @@ scroll_bar = Scrollbar(text_area)
 window.grid_rowconfigure(0, weight=1)
 window.grid_columnconfigure(0, weight=1)
 text_area.grid(sticky=N + E + S + W)
+scroll_bar.pack(side=RIGHT, fill=Y)
+text_area.config(yscrollcommand=scroll_bar.set)
 
 frame = Frame(window)
 frame.grid()
@@ -70,9 +72,12 @@ color_button.grid(row=0, column=0)
 font_box = OptionMenu(frame, font_name, *font.families(), command=change_font)
 font_box.grid(row=0, column=1)
 
-size_box = Spinbox(frame, from =1, to=100, textvariable=font_size, command=change_font)
+size_box = Spinbox(frame, from_=1, to=100, textvariable=font_size, command=change_font)
+size_box.grid(row=0, column=2)
 
-scroll_bar.pack(side=RIGHT, fill=Y)
-text_area.config(yscrollcommand=scroll_bar.set)
+menu_bar = Menu(window)
+window.config(menu=menu_bar)
+
+
 
 window.mainloop()
