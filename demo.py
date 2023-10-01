@@ -34,7 +34,7 @@ def open_file():
         file.close()
 
 def save_file():
-    file = filedialog.askdirectoryfilename(initialfile='unititled.txt',
+    file = filedialog.asksaveasfilename(initialfile='unititled.txt',
                                            defaulttexttension=".txt",
                                            filetypes=[("ALL Files","*.*"),
                                                       "text Docunents","*.txt"])
