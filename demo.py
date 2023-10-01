@@ -16,8 +16,9 @@ def new_file():
     text_area.delete(1.0, END)
 
 def open_file():
-    file = askopenfilename(defaultextension=".txt", file=[("All Files","*.*"),
-                                                          ("Text Documents","*.txt ")])
+    file = askopenfilename(defaultextension=".txt", 
+                           file=[("All Files","*.*"),
+                                ("Text Documents","*.txt ")])
 
     try:
         window.title(os.path.basename(file))
@@ -35,9 +36,9 @@ def open_file():
 
 def save_file():
     file = filedialog.asksaveasfilename(initialfile='unititled.txt',
-                                           defaulttexttension=".txt",
+                                           defaultextension=".txt",
                                            filetypes=[("ALL Files","*.*"),
-                                                      "text Docunents","*.txt"])
+                                                      ("text Docunents","*.txt")])
     
     if file is None:
         return
@@ -46,15 +47,14 @@ def save_file():
             window.title(os.path.basename(file))
             file = open(file, "w")
 
-            file.write(text_area.get(1,0, END))
+            file.write(text_area.get(1.0, END))
         except Exception:
             print("couldn't save file")
-        finally:
+        finally:    
             file.close
 
 def cut():
     text_area.event_generate("<<Cut>>")
-
 
 def copy():
     text_area.event_generate("<<Copy>>")
